@@ -1,5 +1,3 @@
-#This enables in opening specific website , getting information from wikipedia , getting top urls around a specific thing from internet using speech
-
 import pyttsx3
 import speech_recognition as sr
 import datetime
