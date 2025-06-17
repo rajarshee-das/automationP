@@ -41,7 +41,7 @@ def takecommand():
         print(f"My friend, you said: {query}\n")
     except Exception as e:
         print("Rajarshee, say that again please......")
-        return None
+        return "None"
     return query
 
 def sendEmail(to, content):
@@ -56,7 +56,9 @@ if __name__ == '__main__':
     wishme()
 
     while True:
-        query = takecommand().lower().strip()
+        a=takecommand()
+        if(a!=None):
+            query=a.lower().strip()
         
         if not query:
             continue
@@ -104,10 +106,23 @@ if __name__ == '__main__':
                 print(e)
                 speak("My friend... I am unable to send the email...please address the error")
 
-        elif query!=None:
-            for j in search(query,tld="co.in",num=10,stop=10,pause=2):
-                speak("You can search the thing in the given links")
-                print(j)
-
         elif 'stop' in query:
             speak("Thank you for using the project , have a great time ")
+            break
+
+        elif query!=None:
+            speak("Please say one more time ") 
+            r=sr.Recognizer()
+            with sr.Microphone() as source:
+                audio=r.listen(source)
+            try:
+                text=r.recognize_google(audio)
+            except sr.UnknownValueError:
+                print("What you said can not be converted into a text .")
+            except sr.RequestError:
+                print("Could not request results from google speech recognition service .")
+            speak("You can search the thing in the given links")
+            for j in search(text,tld="co.in",num=10,stop=10,pause=2):
+                print(j)
+
+        
