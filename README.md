@@ -1,1 +1,1 @@
-open website , get information , get urls with speech
+Open specific website , get information , get urls with speech .
